@@ -62,6 +62,11 @@ soon get a message informing you o. an error.
 make tests
 ```
 
+On Windows:
+```bash
+.\bin\phpunit.bat
+```
+
 ## Meta
 
 * No warranty expressed or implied. Software is as is. Diggity.
