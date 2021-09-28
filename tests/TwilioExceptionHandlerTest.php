@@ -6,7 +6,6 @@ use App\Exceptions\TwilioExceptionHandler;
 use \Exception;
 
 
-
 class TwilioExceptionHandlerTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -14,7 +13,7 @@ class TwilioExceptionHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        new TwilioExceptionHandler();
+        new TwilioExceptionHandler("", "", "");
         $handler = set_exception_handler('var_dump');
         restore_exception_handler();
 
@@ -33,6 +32,7 @@ class TwilioExceptionHandlerTest extends \PHPUnit_Framework_TestCase
         $testException = new Exception("Test Error.");
 
         $handlerMock = $this->getMockBuilder(TwilioExceptionHandler::Class)
+            ->disableOriginalConstructor()
             ->setMethods(['sendSms'])
             ->getMock();
 

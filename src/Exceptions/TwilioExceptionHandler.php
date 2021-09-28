@@ -8,8 +8,15 @@ use Exception;
 
 class TwilioExceptionHandler extends Exception
 {
-    public function __construct()
+    private $accountSid;
+    private $authToken;
+    private $twilioNumber;
+
+    public function __construct(string $accountSid, string $authToken, string $twilioNumber)
     {
+        $this->accountSid = $accountSid;
+        $this->authToken = $authToken;
+        $this->twilioNumber = $twilioNumber;
         @set_exception_handler(array($this, 'report'));
     }
 
@@ -55,23 +62,20 @@ class TwilioExceptionHandler extends Exception
 
     protected function sendSms($to, $message)
     {
-        $accountSid = getenv('TWILIO_ACCOUNT_SID');
-        $authToken = getenv('TWILIO_AUTH_TOKEN');
-        $twilioNumber = getenv('TWILIO_NUMBER');
 
-        $client = new Client($accountSid, $authToken);
+        $client = new Client($this->accountSid, $this->authToken);
 
         try {
             $client->messages->create(
                 $to,
                 [
                     "body" => $message,
-                    "from" => $twilioNumber
+                    "from" => $this->twilioNumber
                     //   On US phone numbers, you could send an image as well!
                     //  'mediaUrl' => $imageUrl
                 ]
             );
-            echo 'Message sent to ' + $twilioNumber;
+            echo 'Message sent to ' + $this->twilioNumber;
         } catch (TwilioException $e) {
             echo  $e;
         }

@@ -24,17 +24,15 @@ Use Twilio to create SMS alerts so that you never miss a critical issue.
    cp .env.example .env
    ```
 
+   On production, to avoid showing errors, you should set the variable `DISPLAY_ERRORS` to
+   `0`. For development, it can be set to `1` on development. For more information, read
+   [this](https://phpdelusions.net/articles/error_reporting)
+
    You can find your `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` under
    your [Twilio Account Settings](https://www.twilio.com/console).
    You can buy Twilio phone numbers at
    [Twilio numbers](https://www.twilio.com/console/phone-numbers)
    `TWILIO_NUMBER` should be set to the phone number you purchased above.
-
-1. Load your environment variables.
-
-    ```bash
-    source .env
-    ```
 
 1. Customize `config/administrators.json` with your name and phone number.
 
