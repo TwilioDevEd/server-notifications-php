@@ -4,7 +4,7 @@
     "keywords": ["twilio", "SMS", "server", "notifications"],
     "require": {
         "php": ">=5.4",
-        "twilio/sdk": "^5.7",
+        "twilio/sdk": "^6.36",
         "vlucas/phpdotenv": "^5.3"
     },
     "require-dev": {
